@@ -15,14 +15,14 @@ Make sure you have Node.js and npm (Node.js package manager) installed on your m
 Open the terminal and navigate to the directory where you want to clone the project. Then, execute the following command:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
+git clone https://github.com/AnaJuliaSSdev/Node.git
 ```
 ### Cloning the Repository
 
 After cloning the repository, navigate to the project directory and install the dependencies by running the following command:
 
 ```bash
-cd your-project
+cd converter
 npm install
 ```
 
