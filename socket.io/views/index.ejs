@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="word" oninput="send()">
+    <hr>
+    <p id="result"></p>
+</body>
+<!-- Found the link on: https://cdnjs.com/libraries/socket.io -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
+<script>
+    let socketio = io("http://localhost:3000")
+    socketio.on("disconnect", () => {
+        console.log("Disconnected")
+    })
+
+    socketio.emit("Welcome", { name: "Aninha" })
+
+    socketio.on("result", (data) => {
+        var p = document.getElementById("result")
+        p.innerHTML = data
+    })
+
+    function send() {
+        let input = document.getElementById("word")
+        socketio.emit("word", input.value)
+    }
+</script>
+
+</html>
