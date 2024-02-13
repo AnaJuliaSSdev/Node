@@ -1,6 +1,6 @@
-# Socket.IO Proof of Concept (POC)
+# Chat Socket.IO Proof of Concept (POC)
 
-This is a proof of concept (POC) project to learn how the Socket.IO library works.
+This is a proof of concept (POC) project to learn how to use the Socket.IO library to create a simple chat application.
 
 ## How to Clone and Run the Project
 
@@ -35,3 +35,4 @@ node index.js
 ```
 
 This will start the server and your program will be accessible at http://localhost:3000.
+You can open multiple browser tabs or windows to simulate multiple users chatting with each other.

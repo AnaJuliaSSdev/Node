@@ -5,12 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
+<style>
+    #chat {
+        max-height: 500px;
+        min-height: 500px;
+        background-color: aliceblue;
+        overflow-y: scroll;
+    }
+</style>
 
 <body>
-    <input type="text" name="" id="word" oninput="send()">
-    <hr>
-    <p id="result"></p>
+    <h1>Chat using socket.io</h1>
+    <div id="chat">
+
+    </div> <br>
+    <input type="text" name="" id="username" placeholder="Your name here...">
+    <input type="text" name="" id="msg" class="form-control" placeholder="Message...">
+    <button onclick="send()" type="button" class="btn btn-primary btn-lg btn-block">Send</button>
 </body>
 <!-- Found the link on: https://cdnjs.com/libraries/socket.io -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
@@ -20,16 +34,22 @@
         console.log("Disconnected")
     })
 
-    socketio.emit("Welcome", { name: "Aninha" })
-
-    socketio.on("result", (data) => {
-        var p = document.getElementById("result")
-        p.innerHTML = data
+    socketio.on("showmsg", (data) => {
+        console.log(data)
+        let chat = document.getElementById("chat")
+        var p = document.createElement("p")
+        p.innerHTML = data.username + ": " + data.msg
+        chat.append(p)
     })
 
     function send() {
-        let input = document.getElementById("word")
-        socketio.emit("word", input.value)
+        let msgField = document.getElementById("msg")
+        let usernameField = document.getElementById("username")
+
+        let msg = msgField.value
+        let username = usernameField.value
+
+        socketio.emit("msg", { msg: msg, username: username })
     }
 </script>
 

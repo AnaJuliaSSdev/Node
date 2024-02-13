@@ -14,17 +14,12 @@ http.listen(3000, () => {
 });
 
 socketio.on("connection", (socket) => {
-  socket.on("Welcome", (data) => {
-    console.log("Welcome");
-    console.log(data);
-  });
-
-  socket.on("word", (data) => {
-    console.log(data);
-    socket.emit("result", data + " - node course");
-  });
-
   socket.on("disconnect", () => {
     console.log("x disconnected: " + socket.id);
+  });
+
+  socket.on("msg", (data) => {
+    socketio.emit("showmsg", data);
+    console.log(data);
   });
 });
