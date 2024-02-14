@@ -9,22 +9,45 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <style>
+    body {
+        text-align: center;
+        max-height: 100%;
+        margin: 30px;
+        color: #374151
+    }
+
     #chat {
         max-height: 500px;
         min-height: 500px;
         background-color: aliceblue;
         overflow-y: scroll;
+        margin: auto;
     }
+
+    input {
+        max-width: 500px;
+        margin: auto;
+    }
+
+    div {
+        max-height: 500px;
+        max-width: 800px;
+        text-align: left;
+        padding: 50px;
+    }
+
 </style>
 
 <body>
-    <h1>Chat using socket.io</h1>
+    <h2>Chat using socket.io</h2>
     <div id="chat">
 
     </div> <br>
-    <input type="text" name="" id="username" placeholder="Your name here...">
-    <input type="text" name="" id="msg" class="form-control" placeholder="Message...">
-    <button onclick="send()" type="button" class="btn btn-primary btn-lg btn-block">Send</button>
+    <input type="text" name="" id="username" placeholder="Your name here..." class="form-control">
+    <br>
+    <input type="text" name="" id="msg" class="form-control form-control-lg" placeholder="Message...">
+    <br>
+    <button onclick="send()" type="button" class="btn btn-primary btn-lg">Send</button>
 </body>
 <!-- Found the link on: https://cdnjs.com/libraries/socket.io -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js"></script>
@@ -50,7 +73,8 @@
         let username = usernameField.value
 
         socketio.emit("msg", { msg: msg, username: username })
+        msgField.value = ""
     }
-</script>
+</script>   
 
 </html>
